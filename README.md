@@ -1,23 +1,23 @@
-# AI-music detection study
-Code repository of our research paper on AI-generated music detection ["AI-Generated Music Detection and its Challenges"](https://arxiv.org/pdf/2501.10111) - D. Afchar, G. Meseguer Brocal, R. Hennequin (accepted for IEEE ICASSP 2025).
+# Исследование обнаружения ИИ-музыки
+Репозиторий кода нашей исследовательской работы по обнаружению музыки, сгенерированной ИИ, ["AI-Generated Music Detection and its Challenges"](https://arxiv.org/pdf/2501.10111) — D. Afchar, G. Meseguer Brocal, R. Hennequin (принято к публикации на IEEE ICASSP 2025).
 
-We create an AI-music detector by detecting the use of an artificial decoder (e.g., a neural decoder). For that, we auto-encode a dataset of music with several such auto-encoders to train on. This setting enables us to avoid detecting confounding artefacts. For instance, if a dataset of artificial music only contains pop music, you don't want to inadvertently train a pop music detector. Here, the task is to distinguish real music from its reconstructed counterpart. With the same musical content and compression setting, only the autoencoder artefacts remain. We also verify that merely training on autoencoder allows the model to detect music fully-generated from prompts (i.e., not auto-encoded).
+Мы создаём детектор ИИ-музыки, выявляя использование искусственного декодера (например, нейронного декодера). Для этого мы автоэнкодируем набор музыкальных данных несколькими такими автоэнкодерами, на которых обучаем модель. Такой подход позволяет избежать обнаружения ложных артефактов. Например, если набор искусственной музыки состоит только из поп‑музыки, вы не хотите случайно обучить детектор поп‑музыки. Здесь задача — различать настоящую музыку и её реконструированный вариант. При одинаковом музыкальном содержании и настройках сжатия остаются лишь артефакты автоэнкодера. Мы также проверяем, что обучение только на автоэнкодерах позволяет модели обнаруживать полностью сгенерированную музыкой из текстовых подсказок (то есть не автоэнкодированную).
 
-Examples of audio reconstructions may be found in the `audio_examples` folder or on the demo page: [research.deezer.com/deepfake-detector/](https://research.deezer.com/deepfake-detector/).
+Примеры аудио‑реконструкций находятся в папке `audio_examples` или на демо‑странице: [research.deezer.com/deepfake-detector/](https://research.deezer.com/deepfake-detector/).
 
-The FMA dataset is available at [github.com/mdeff/fma](https://github.com/mdeff/fma).
+Набор данных FMA доступен по ссылке [github.com/mdeff/fma](https://github.com/mdeff/fma).
 
-More than a detector, we ponder the larger consequences of deploying a detector: robustness to manipulation, generalisation to different models, interpretability, ...
+Более чем просто детектор, мы размышляем о более широких последствиях его развертывания: устойчивость к манипуляциям, обобщаемость на разные модели, интерпретируемость и т.д.
 
-⚠️ Following the recent press releases by Deezer on our [AI-music detection tool](https://newsroom-deezer.com/2025/01/deezer-deploys-cutting-edge-ai-detection-tool-for-music-streaming/), let us clarify something for interested readers: the tool available in this repository is **not** the tool we use in production for synthetic music detection. This is due to the delay between doing research and having a paper being published. Nevertheless, our new tool succeeds this present work, is elaborated by the same authors, and with the same concerns in mind, namely aiming for interpretability, almost perfect accuracy scores, and a focus on a possibility for recourse in case of false positives, generalisation to unknown scenarios and robustness to manipulation.
+⚠️ В свете недавних пресс‑релизов Deezer о нашем [инструменте обнаружения ИИ‑музыки](https://newsroom-deezer.com/2025/01/deezer-deploys-cutting-edge-ai-detection-tool-for-music-streaming/), хотим уточнить читателям: инструмент, доступный в этом репозитории, **не** является тем, который используется в продакшене для обнаружения синтетической музыки. Это связано с задержкой между проведением исследований и публикацией статьи. Тем не менее, наш новый инструмент продолжает текущую работу, разработан теми же авторами и учитывает те же задачи: интерпретируемость, почти идеальная точность и возможность предоставления объяснений в случае ложных срабатываний, а также обобщаемость на неизвестные сценарии и устойчивость к манипуляциям.
 
-## License
+## Лицензия
 
-We provide this repository under the [CC-BY-NC-4.0](https://creativecommons.org/licenses/by-nc/4.0/) license. You may share (mirror) and adapt (borrow and alter) this content, providing that you credit this work and don't use it for commercial purposes.
+Мы распространяем этот репозиторий под лицензией [CC-BY-NC-4.0](https://creativecommons.org/licenses/by-nc/4.0/). Вы можете делиться (миррорить) и адаптировать (заимствовать и изменять) содержимое при условии указания авторства и неиспользования в коммерческих целях. Также доступен русский перевод лицензии: [LICENSE_RU.md](https://github.com/developer3000s/deepfake-detector-rus/LICENSE_RU.md).
 
-## Cite
+## Цитирование
 
-Either the ICASSP publication :
+Можно использовать публикацию ICASSP:
 ```
 @inproceedings{afchar2025ai,
   title={AI-Generated Music Detection and its Challenges},
@@ -29,7 +29,7 @@ Either the ICASSP publication :
 }
 ```
 
-or the previous Arxiv version (longer paper with more experiments on calibration and interpretability):
+или более раннюю версию на arXiv (более объёмная статья с экспериментами по калибровке и интерпретируемости):
 ```
 @article{afchar2024detecting,
   title={Detecting music deepfakes is easy but actually hard},
@@ -39,12 +39,10 @@ or the previous Arxiv version (longer paper with more experiments on calibration
 }
 ```
 
-## Reproducibility instructions
+## Инструкции по воспроизводимости
 
-To use the autoencoders, you need to clone the following repo into a `pretrained` folder :
+Для использования автоэнкодеров необходимо клонировать следующие репозитории в папку `pretrained`:
 * [Git Musika!](https://github.com/marcoppasini/musika)
-* [LAC](https://github.com/hugofloresgarcia/lac), using the pretrained weights found in [VampNet](https://github.com/hugofloresgarcia/vampnet)
+* [LAC](https://github.com/hugofloresgarcia/lac) — используйте предобученные веса из проекта [VampNet](https://github.com/hugofloresgarcia/vampnet)
 
-Then, in the `utils_encode.py` script in the musika folder, I added a method `encode_audio` to return latent from the model given an audio `wv`, namely copying the method `compress_whole_files` and doing a `return lat` instead of doing a `np.save` in the end.
-
-
+Затем в скрипте `utils_encode.py` внутри папки musika добавьте метод `encode_audio`, который возвращает латентный вектор модели по заданному аудио‑сигналу `wv`. Для этого скопируйте метод `compress_whole_files` и замените сохранение `np.save` на `return lat`.
